@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class Q10815 {
 
     public static void main(String[] args) throws IOException {
 
