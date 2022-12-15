@@ -20,6 +20,7 @@ public class Q10815 {
         int comparisonCardNumber = Integer.parseInt(console.readLine());
         String comparisonInput = console.readLine();
         String[] comparisonCards = comparisonInput.split(" ");
+        //
 
         List<String> possess = compareCards(userCards, comparisonCards);
         printComparingResult(possess);
