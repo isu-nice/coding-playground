@@ -20,32 +20,24 @@ public class Q10815 {
         int comparisonCardNumber = Integer.parseInt(console.readLine());
         String comparisonInput = console.readLine();
         String[] comparisonCards = comparisonInput.split(" ");
-        //
 
-        List<String> possess = compareCards(userCards, comparisonCards);
-        printComparingResult(possess);
-    }
+        int[] possess = new int[comparisonCardNumber];
 
-    private static List<String> compareCards(String[] userCards, String[] comparisonCards){
-        List<String> possess = new ArrayList<>();
-        Arrays.stream(comparisonCards)
-                .forEach(comparisonCard -> {
-                    if (isExist(comparisonCard, userCards)) {
-                        possess.add("1");
-                    } else {
-                        possess.add("0");
-                    }
+        for(int k = 0; k < comparisonCardNumber; k++){
+            if(isExist(comparisonCards[k], userCards)){
+                possess[k]++;
+            }
+        }
+
+        Arrays.stream(possess)
+                .forEach(result ->{
+                    String count = String.format("%d ", result);
+                    System.out.printf(count);
                 });
-        return possess;
     }
 
     private static boolean isExist(String comparisonCard, String[] userCards) {
         return Arrays.asList(userCards)
                 .contains(comparisonCard);
-    }
-
-    private static void printComparingResult(List<String> possess) {
-        String result = String.join(" ", possess);
-        System.out.println(result);
     }
 }
