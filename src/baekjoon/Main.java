@@ -3,9 +3,6 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Main {
 
@@ -21,30 +18,15 @@ public class Main {
         String comparisonInput = console.readLine();
         String[] comparisonCards = comparisonInput.split(" ");
 
-        List<String> possess = compareCards(userCards, comparisonCards);
-        printComparingResult(possess);
-    }
+        int[] possess = new int[comparisonCardNumber];
 
-    private static List<String> compareCards(String[] userCards, String[] comparisonCards){
-        List<String> possess = new ArrayList<>();
-        Arrays.stream(comparisonCards)
-                .forEach(comparisonCard -> {
-                    if (isExist(comparisonCard, userCards)) {
-                        possess.add("1");
-                    } else {
-                        possess.add("0");
-                    }
-                });
-        return possess;
-    }
-
-    private static boolean isExist(String comparisonCard, String[] userCards) {
-        return Arrays.asList(userCards)
-                .contains(comparisonCard);
-    }
-
-    private static void printComparingResult(List<String> possess) {
-        String result = String.join(" ", possess);
-        System.out.println(result);
+        for (int k = 0; k < comparisonCardNumber; k++) {
+            for (int i = 0; i < userCardNumber; i++) {
+                if (comparisonCards[k].equals(userCards[i])) {
+                    possess[k]++;
+                }
+            }
+            System.out.printf("%d ", possess[k]);
+        }
     }
 }
