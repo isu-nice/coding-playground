@@ -3,8 +3,7 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -12,32 +11,47 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tokenizer;
 
         int userCardNumber = Integer.parseInt(console.readLine());
-        StringTokenizer userCard = new StringTokenizer(console.readLine());
-        String[] userCards = new String[userCardNumber];
+        int[] userCards = new int[userCardNumber];
 
-        for (int i = 0; i < userCardNumber; i++) {
-            userCards[i] = userCard.nextToken();
+        tokenizer = new StringTokenizer(console.readLine());
+        for (int j = 0; j < userCardNumber; j++) {
+            userCards[j] = Integer.parseInt(tokenizer.nextToken());
         }
+
+        Arrays.sort(userCards);
 
         int comparisonCardNumber = Integer.parseInt(console.readLine());
-        StringTokenizer comparisonCard = new StringTokenizer(console.readLine());
-        LinkedHashMap<String, Integer> possess = new LinkedHashMap<>();
 
-        for (int j = 0; j < comparisonCardNumber; j++) {
-            possess.put(comparisonCard.nextToken(), 0);
+        tokenizer = new StringTokenizer(console.readLine());
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < comparisonCardNumber; i++) {
+            int comparisonCard = Integer.parseInt(tokenizer.nextToken());
+            builder.append(binarySearch(comparisonCard, userCards, userCardNumber)).append(" ");
         }
 
-        for (int k = 0; k < userCardNumber; k++) {
-            if (possess.containsKey(userCards[k])) {
-                possess.put(userCards[k], possess.get(userCards[k]) + 1);
+        System.out.println(builder);
+        console.close();
+    }
+
+    private static int binarySearch(int comparisonCard, int[] userCards, int userCardNumber) {
+        int first = 0;
+        int last = userCardNumber - 1;
+
+        while (first <= last) {
+            int mid = (first + last) / 2;
+
+            if (userCards[mid] == comparisonCard) {
+                return 1;
+            }
+            if (userCards[mid] < comparisonCard) {
+                first = mid + 1;
+            } else {
+                last = mid - 1;
             }
         }
-
-        possess.keySet().forEach(key -> {
-            int count = possess.get(key);
-            System.out.printf("%d ", count);
-        });
+        return 0;
     }
 }
