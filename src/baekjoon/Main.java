@@ -7,51 +7,50 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
+    private static final int NUMBER_OF_SIDES = 3;
+    private static final String RIGHT_SIGN = "right" + "\n";
+    private static final String WRONG_SIGN = "wrong" + "\n";
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer tokenizer;
+        StringBuilder signs = new StringBuilder();
 
-        int userCardNumber = Integer.parseInt(console.readLine());
-        int[] userCards = new int[userCardNumber];
+        String lengths = console.readLine();
+        int[] sideLengths = getSideLengths(lengths);
 
-        tokenizer = new StringTokenizer(console.readLine());
-        for (int j = 0; j < userCardNumber; j++) {
-            userCards[j] = Integer.parseInt(tokenizer.nextToken());
+        while (!isExitSignal(sideLengths)) {
+            if (isRightTriangle(sideLengths)) {
+                signs.append(RIGHT_SIGN);
+            } else {
+                signs.append(WRONG_SIGN);
+            }
+            lengths = console.readLine();
+            sideLengths = getSideLengths(lengths);
         }
 
-        Arrays.sort(userCards);
-
-        int comparisonCardNumber = Integer.parseInt(console.readLine());
-
-        tokenizer = new StringTokenizer(console.readLine());
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < comparisonCardNumber; i++) {
-            int comparisonCard = Integer.parseInt(tokenizer.nextToken());
-            builder.append(binarySearch(comparisonCard, userCards, userCardNumber)).append(" ");
-        }
-
-        System.out.println(builder);
+        System.out.print(signs);
         console.close();
     }
 
-    private static int binarySearch(int comparisonCard, int[] userCards, int userCardNumber) {
-        int first = 0;
-        int last = userCardNumber - 1;
+    private static boolean isExitSignal(int[] sideLengths) {
+        return Arrays.stream(sideLengths).sum() == 0;
+    }
 
-        while (first <= last) {
-            int mid = (first + last) / 2;
+    private static boolean isRightTriangle(int[] sideLengths) {
+        Arrays.sort(sideLengths);
+        double maxSide = Math.pow(sideLengths[2], 2);
+        double remainingSide = Math.pow(sideLengths[0], 2) + Math.pow(sideLengths[1], 2);
+        return maxSide == remainingSide;
+    }
 
-            if (userCards[mid] == comparisonCard) {
-                return 1;
-            }
-            if (userCards[mid] < comparisonCard) {
-                first = mid + 1;
-            } else {
-                last = mid - 1;
-            }
+    private static int[] getSideLengths(String lengths) {
+        StringTokenizer tokenizer = new StringTokenizer(lengths);
+
+        int[] sideLengths = new int[NUMBER_OF_SIDES];
+        for (int i = 0; i < NUMBER_OF_SIDES; i++) {
+            sideLengths[i] = Integer.parseInt(tokenizer.nextToken());
         }
-        return 0;
+        return sideLengths;
     }
 }
