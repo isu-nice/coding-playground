@@ -15,19 +15,19 @@ public class Main {
         HashSet<Character> set = new HashSet<>();
         int count = n;
 
-        for(int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             String word = br.readLine();
             set.add(word.charAt(0));
 
-            for(int a = 1; a < word.length(); a++) {
+            for (int a = 1; a < word.length(); a++) {
 
-                if(word.charAt(a-1) == word.charAt(a)) {
+                if (word.charAt(a - 1) == word.charAt(a)) {
                     set.add(word.charAt(a));
-                }else {
+                } else {
 
-                    if(!set.contains(word.charAt(a))) {
+                    if (!set.contains(word.charAt(a))) {
                         set.add(word.charAt(a));
-                    }else {
+                    } else {
                         count--;
                         break;
                     }
