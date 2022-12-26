@@ -3,54 +3,39 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.HashSet;
 
 public class Main {
-    private static final int NUMBER_OF_SIDES = 3;
-    private static final String RIGHT_SIGN = "right" + "\n";
-    private static final String WRONG_SIGN = "wrong" + "\n";
 
     public static void main(String[] args) throws IOException {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder signs = new StringBuilder();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
-        String lengths = console.readLine();
-        int[] sideLengths = getSideLengths(lengths);
+        HashSet<Character> set = new HashSet<>();
+        int count = n;
 
-        while (!isExitSignal(sideLengths)) {
-            if (isRightTriangle(sideLengths)) {
-                signs.append(RIGHT_SIGN);
-            } else {
-                signs.append(WRONG_SIGN);
+        for(int i = 1; i <= n; i++) {
+            String word = br.readLine();
+            set.add(word.charAt(0));
+
+            for(int a = 1; a < word.length(); a++) {
+
+                if(word.charAt(a-1) == word.charAt(a)) {
+                    set.add(word.charAt(a));
+                }else {
+
+                    if(!set.contains(word.charAt(a))) {
+                        set.add(word.charAt(a));
+                    }else {
+                        count--;
+                        break;
+                    }
+                }
             }
-            lengths = console.readLine();
-            sideLengths = getSideLengths(lengths);
+            set.clear();
         }
 
-        System.out.print(signs);
-        console.close();
-    }
-
-    private static boolean isExitSignal(int[] sideLengths) {
-        return Arrays.stream(sideLengths).sum() == 0;
-    }
-
-    private static boolean isRightTriangle(int[] sideLengths) {
-        Arrays.sort(sideLengths);
-        double maxSide = Math.pow(sideLengths[2], 2);
-        double remainingSide = Math.pow(sideLengths[0], 2) + Math.pow(sideLengths[1], 2);
-        return maxSide == remainingSide;
-    }
-
-    private static int[] getSideLengths(String lengths) {
-        StringTokenizer tokenizer = new StringTokenizer(lengths);
-
-        int[] sideLengths = new int[NUMBER_OF_SIDES];
-        for (int i = 0; i < NUMBER_OF_SIDES; i++) {
-            sideLengths[i] = Integer.parseInt(tokenizer.nextToken());
-        }
-        return sideLengths;
+        System.out.println(count);
     }
 }
