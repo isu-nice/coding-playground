@@ -3,23 +3,25 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        int answer = fibonacci(N);
-        System.out.println(answer);
+        int hour = Integer.parseInt(st.nextToken());
+        int minute = Integer.parseInt(st.nextToken());
+        int time = Integer.parseInt(br.readLine());
 
-    }
+        int rest = (minute + time) % 60;
+        hour += (minute + time - rest) / 60;
+        minute = rest;
 
-    public static int fibonacci(int N) {
+        if (hour >= 24) hour = hour - 24;
 
-        if (N <= 1) return N;
-
-        return fibonacci(N - 2) + fibonacci(N - 1);
+        System.out.println(hour + " " + minute);
     }
 }
