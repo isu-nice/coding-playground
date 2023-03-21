@@ -1,4 +1,4 @@
-package coplit;
+package coplitPractice;
 
 import java.util.ArrayList;
 import java.util.Stack;
