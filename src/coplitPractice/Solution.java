@@ -4,42 +4,21 @@ package coplitPractice;
 import java.util.*;
 
 public class Solution {
-    public String barcode(int len) {
-        return dfs("", len);
-    }
+    public int partTimeJob(int k) {
+        int[] coins = new int[]{500, 100, 50, 10, 5, 1};
+        int num = 0;
 
-    public String dfs(String answer, int len) {
-        String[] nums = {"1", "2", "3"};
-
-        // 탈출 조건
-        if (answer.length() == len) {
-            return answer;
-        }
-
-        for (int a = 0; a < nums.length; a++) {
-            String temp = answer + nums[a];
-            if (isValid(temp)) {
-                String search = dfs(temp, len);
-                if (search != null) {
-                    return search;
-                }
+        for (int coin : coins) {
+            if(k == 0) {
+                break;
             }
+
+            int count = k / coin;
+            num += count;
+            k -= (coin * count);
         }
 
-        return null;
-    }
-
-    public boolean isValid(String str) {
-        StringBuilder builder = new StringBuilder(str);
-        String reverseStr = builder.reverse().toString();
-
-        for (int i = 1; i <= str.length() / 2; i++) {
-            String sub = reverseStr.substring(0, i);
-            String nextSub = reverseStr.substring(i, i + i);
-            if (sub.equals(nextSub)) {
-                return false;
-            }
-        }
-        return true;
+        return num;
     }
 }
+
