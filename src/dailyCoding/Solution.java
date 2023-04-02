@@ -40,4 +40,16 @@ public class Solution {
 
         return answer.toString();
     }
+
+    public long power(int base, int exponent) {
+        long answer = 1;
+        final int divider = 94_906_249;
+
+        for(int i = 1; i <= exponent; i++) {
+            answer *= base;
+            answer %= divider;
+        }
+
+        return answer;
+    }
 }
