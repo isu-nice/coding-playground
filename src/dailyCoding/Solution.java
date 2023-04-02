@@ -4,40 +4,20 @@ package dailyCoding;
 import java.util.*;
 
 public class Solution {
-    public String compressString(String str) {
-        StringBuilder result = new StringBuilder();
-        Queue<String> q = new LinkedList<>();
+    public int largestProductOfThree(int[] arr) {
+        // 배열 정렬해줌
+        Arrays.sort(arr);
 
-        // str을 한 글자씩 큐에 담아줌
-        for (int i = 0; i < str.length(); i++) {
-            q.add(String.valueOf(str.charAt(i)));
-        }
+        // case1 : 제일 첫 요소 두 개 곱한 것과 제일 마지막 요소 곱하는 경우
+        int answer1 = arr[0] * arr[1] * arr[arr.length - 1];
 
-        int count = 1;
+        // case2 : 제일 큰 요소 세개를 곱하는 경우
+        int answer2 = arr[arr.length - 1] * arr[arr.length - 2] * arr[arr.length - 3];
 
-        while (!q.isEmpty()) {
-            String alphabet = q.poll();
-
-            // 다음 글자와 알파벳이 같다면 카운트 +1
-            if(alphabet.equals(q.peek())){
-                count++;
-            }else {
-                // 카운트가 3이상인 경우만 압축
-                if(count >= 3){
-                    result.append(count)
-                            .append(alphabet);
-                } else{
-                    // 그렇지 않은 경우는 카운트만큼 알파벳을 붙여줌
-                    for(int i = 1; i <= count; i++){
-                        result.append(alphabet);
-                    }
-                }
-
-                // 카운트 다시 초기화
-                count = 1;
-            }
-        }
-
-        return result.toString();
+        // 둘 중에 더 큰 것이 정답
+        return Math.max(answer1, answer2);
     }
+
+
+
 }
