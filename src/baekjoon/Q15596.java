@@ -11,5 +11,4 @@ public class Q15596 {
 		
 		return ans;
 	}
-	
 }
