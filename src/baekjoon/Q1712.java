@@ -7,22 +7,22 @@ import java.util.StringTokenizer;
 
 public class Q1712 {
 
-	public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		long fixedCost = (long) Integer.parseInt(st.nextToken());
-		long variableCost = (long) Integer.parseInt(st.nextToken());
-		long price = (long) Integer.parseInt(st.nextToken());
-		long income = price - variableCost;
-		long bePoint = 1;
-		
-		if(income <= 0) bePoint = -1;
-		else {
-			bePoint += fixedCost / income;
-		}
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-		System.out.println(bePoint);
-	}
+        long fixedCost = (long) Integer.parseInt(st.nextToken());
+        long variableCost = (long) Integer.parseInt(st.nextToken());
+        long price = (long) Integer.parseInt(st.nextToken());
+        long income = price - variableCost;
+        long bePoint = 1;
+
+        if (income <= 0) bePoint = -1;
+        else {
+            bePoint += fixedCost / income;
+        }
+
+        System.out.println(bePoint);
+    }
 }
