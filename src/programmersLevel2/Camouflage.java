@@ -21,9 +21,6 @@ class Camouflage {
             name.put(clothes[i][0], i);
         }
 
-        //answer = cnt
-
-
         return answer;
     }
 }
