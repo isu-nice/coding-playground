@@ -9,13 +9,12 @@ class BiggestNumber {
 
         int cnt = 0;
         int maxNum = numbers[numbers.length - 1];
+
         while (maxNum / 10 > 0) {
             cnt++;
         }
 
-
         answer = Integer.toString(cnt);
-
 
         return answer;
     }
