@@ -14,7 +14,6 @@ class WaitingLine {
 
     public int kth(int num, long target, long cnt, boolean[] visited) {
 
-
         if (cnt == target) return 0;
 
         for (int i = 0; i < num; i++) {
@@ -23,9 +22,7 @@ class WaitingLine {
                 kth(num, target, cnt++, visited);
                 visited[i] = false;
             }
-
         }
-
 
         return 0;
     }
