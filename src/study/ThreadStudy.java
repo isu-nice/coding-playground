@@ -59,8 +59,8 @@ class ThreadExample5 {
             public void run() {
                 try {
                     while (true) Thread.sleep(1000);
+                } catch (Exception ignored) {
                 }
-                catch (Exception e) {}
                 System.out.println("Woke Up!!!");
             }
         };
