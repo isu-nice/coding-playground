@@ -25,7 +25,6 @@ public class Q5622 {
                 case 'T', 'U', 'V' -> sec += 8;
                 case 'W', 'X', 'Y', 'Z' -> sec += 9;
             }
-
         }
 
         System.out.println(sec);
