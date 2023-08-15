@@ -43,7 +43,7 @@ public class ConnectedVertices {
 
         for (int vertex = 0; vertex < visited.length; vertex++) {
             // 끊긴 구간이 있을 때 그룹 +1 해준다.
-            if(!visited[vertex]){
+            if (!visited[vertex]) {
                 group++;
                 dfs(visited, matrix, vertex);
             }
@@ -56,9 +56,9 @@ public class ConnectedVertices {
         // 방문 체크
         visited[vertex] = true;
 
-        for(int i = 0; i < matrix.length; i++){
+        for (int i = 0; i < matrix.length; i++) {
             // 방문하지 않았고, 간선이 연결되어 있는 경우
-            if(!visited[i] && matrix[vertex][i] == 1) {
+            if (!visited[i] && matrix[vertex][i] == 1) {
                 // 그 자리부터 다시 탐색
                 dfs(visited, matrix, i);
             }
