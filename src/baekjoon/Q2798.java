@@ -1,10 +1,9 @@
 package baekjoon;
 
-import java.util.Scanner;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Q2798 {
@@ -50,13 +49,9 @@ public class Q2798 {
 
         return max;
     }
-}
 
-
-
-public class Q2798 {
-
-    public static void main(String[] args) {
+    // 기존 풀이 방법
+    public void run2() {
 
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
@@ -76,6 +71,7 @@ public class Q2798 {
                 }
             }
         }
+
         sc.close();
         System.out.println(ans);
     }
