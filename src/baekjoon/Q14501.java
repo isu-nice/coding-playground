@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 점화식 다시 풀어보기!!
 public class Q14501 {
 
     public static void main(String[] args) throws IOException {
